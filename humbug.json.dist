@@ -4,6 +4,7 @@
              "src"
          ],
          "excludes": [
+             "Strategies",
              "unit-test",
              "vendor"
          ]
