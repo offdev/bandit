@@ -1,7 +1,7 @@
 {
     "name": "offdev/bandit",
     "description": "An A/B/x testing algorithm written in PHP by implementing the solution to the multi armed bandit problem",
-    "keywords": ["offdev","bandit","a/b","test","testing","multi","armed"],
+    "keywords": ["offdev","bandit","test","testing","multi","armed"],
     "homepage": "https://github.com/offdev/bandit",
     "license": "Apache License 2.0",
     "require": {
