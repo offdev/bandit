@@ -1,0 +1,11 @@
+# Basic conif
+language: php
+php:
+  - '7.0'
+
+# Composer, dependencies and autoloading
+install:
+  - composer install
+
+# Execute unit tests
+script: phpunit --configuration phpunit.xml
