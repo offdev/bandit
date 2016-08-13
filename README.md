@@ -1,7 +1,7 @@
 # Offdev/Bandit
 An A/B/x testing algorithm written in PHP by implementing the solution to the multi armed bandit problem
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/offdev/bandit.svg?style=flat-square)](https://packagist.org/packages/offdev/bandit)
+[![Latest Stable Version](https://img.shields.io/packagist/vpre/offdev/bandit.svg?style=flat-square)](https://packagist.org/packages/offdev/bandit)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg?style=flat-square)](https://php.net/)
 [![Build Status](https://img.shields.io/travis/offdev/bandit/master.svg?style=flat-square)](https://travis-ci.org/offdev/bandit)
 
