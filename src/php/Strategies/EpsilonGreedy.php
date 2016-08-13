@@ -15,7 +15,6 @@ namespace Offdev\Bandit\Strategies;
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;
 
-
 /**
  * Class EpsilonGreedy
  *

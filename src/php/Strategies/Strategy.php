@@ -15,7 +15,6 @@ namespace Offdev\Bandit\Strategies;
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;
 
-
 /**
  * The Strategy interface defines a way to solve a multi
  * armed bandit problem. For more information about

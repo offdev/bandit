@@ -11,3 +11,4 @@ install:
 script:
   - phpunit --configuration phpunit.xml
   - ./vendor/bin/humbug
+  - ./vendor/bin/phpcs --standard=PSR2 -n --colors src/php/

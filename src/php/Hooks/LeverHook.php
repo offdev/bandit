@@ -14,7 +14,6 @@ namespace Offdev\Bandit\Hooks;
 
 use Offdev\Bandit\Lever;
 
-
 /**
  * Hooks! Everybody LOVES hooks =D
  *

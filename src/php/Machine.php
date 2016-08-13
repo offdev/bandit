@@ -14,7 +14,6 @@ namespace Offdev\Bandit;
 
 use Offdev\Bandit\Exceptions\EmptyNameException;
 
-
 /**
  * Class Machine
  *

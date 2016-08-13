@@ -15,7 +15,6 @@ namespace Offdev\Bandit;
 use Offdev\Bandit\Exceptions\MissingValueException;
 use Offdev\Bandit\Strategies\Strategy;
 
-
 /**
  * Class Tester
  *

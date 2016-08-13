@@ -11,8 +11,8 @@
  */
 
 namespace Offdev\Bandit;
-use Offdev\Bandit\Hooks\LeverHook;
 
+use Offdev\Bandit\Hooks\LeverHook;
 
 /**
  * Class Lever
