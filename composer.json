@@ -8,7 +8,8 @@
         "php": ">=7"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.3"
+        "phpunit/phpunit": "^5.3",
+        "humbug/humbug": "1.0.x-dev"
     },
     "autoload": {
         "psr-4": {
