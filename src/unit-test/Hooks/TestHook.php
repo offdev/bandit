@@ -26,22 +26,6 @@ use Offdev\Bandit\Lever;
 class TestHook implements LeverHook
 {
     /**
-     * @return int
-     */
-    public function getTries(): int
-    {
-        return 500;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRewards(): int
-    {
-        return 125;
-    }
-
-    /**
      * @param Lever $lever
      *
      * @throws \Exception

@@ -125,9 +125,6 @@ class Lever
     {
         $this->hook = $hook;
 
-        $this->tries = $hook->getTries();
-        $this->rewards = $hook->getRewards();
-
         return $this;
     }
 

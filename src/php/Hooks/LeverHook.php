@@ -23,16 +23,6 @@ use Offdev\Bandit\Lever;
 interface LeverHook
 {
     /**
-     * @return int
-     */
-    public function getTries(): int;
-
-    /**
-     * @return int
-     */
-    public function getRewards(): int;
-
-    /**
      * @param Lever $lever
      */
     public function tryLever(Lever $lever);

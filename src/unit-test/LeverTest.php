@@ -64,19 +64,6 @@ class LeverTest extends \PHPUnit_Framework_TestCase
     /**
      * Makes sure the hook works fine
      */
-    public function testLeverSetHookFillsData()
-    {
-        $hook = new TestHook();
-        $lever = new Lever('test');
-        $this->assertInstanceOf(Lever::class, $lever->setHook($hook));
-
-        $this->assertEquals(500, $lever->getTries());
-        $this->assertEquals(125, $lever->getRewards());
-    }
-
-    /**
-     * Makes sure the hook works fine
-     */
     public function testPullLeverIncreasesTries()
     {
         $lever = new Lever('test');
@@ -95,6 +82,7 @@ class LeverTest extends \PHPUnit_Framework_TestCase
     {
         $hook = new TestHook();
         $lever = new Lever('test');
+        $lever->setTries(500);
         $lever->setHook($hook);
         $lever->pull();
     }
@@ -120,6 +108,7 @@ class LeverTest extends \PHPUnit_Framework_TestCase
     {
         $hook = new TestHook();
         $lever = new Lever('test');
+        $lever->setRewards(125);
         $lever->setHook($hook);
         $lever->reward();
     }
