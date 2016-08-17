@@ -4,6 +4,7 @@ An A/B/x testing algorithm written in PHP by implementing the solution to the mu
 [![Latest Stable Version](https://img.shields.io/packagist/vpre/offdev/bandit.svg?style=flat-square)](https://packagist.org/packages/offdev/bandit)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg?style=flat-square)](https://php.net/)
 [![Build Status](https://img.shields.io/travis/offdev/bandit/master.svg?style=flat-square)](https://travis-ci.org/offdev/bandit)
+[![License](https://img.shields.io/github/license/offdev/router.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 ### Requirements
 * PHP >= 7
