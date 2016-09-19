@@ -90,4 +90,6 @@ And somewhere on your website you might want to count the rewards your lever gen
 
 ### Donations
 Any donation will help me get some more pot, so you can enjoy more of my coding ^_^
-* Bitcoin: **1DJEjfs3eFcvtPR6DWrZmtZ28jBbEdNB9C**
+* Bitcoin: **13jtRJtHj5ADoFndZLueWS6sFkWQHZs8mh**
+* Ethereum: **0x810a6296BB0Ed97e28430F6B4180D984af9773b4**
+* Dash: **XuJF7wsABfJRhKYSfQGpnENBTMzjQra1yP**
