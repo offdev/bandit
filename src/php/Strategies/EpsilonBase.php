@@ -6,7 +6,7 @@
  * implementing the solution to the multi armed bandit problem
  *
  * @author      Pascal Severin <pascal.severin@gmail.com>
- * @copyright   Copyright (c) 2016, Pascal Severin
+ * @copyright   Copyright (c) 2017, Pascal Severin
  * @license     Apache License 2.0
  */
 

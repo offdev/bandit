@@ -1,7 +1,8 @@
-# Basic conif
+# Basic config
 language: php
 php:
   - '7.0'
+  - '7.1'
 
 # Composer, dependencies and autoloading
 install:
@@ -9,6 +10,5 @@ install:
 
 # Execute unit tests
 script:
-  - phpunit --configuration phpunit.xml
-  - ./vendor/bin/humbug
-  - ./vendor/bin/phpcs --standard=PSR2 --colors -v src/php/
+  - ./vendor/bin/phpunit --configuration phpunit.xml
+  - ./vendor/bin/phpcs --standard=PSR2 --colors -v src/

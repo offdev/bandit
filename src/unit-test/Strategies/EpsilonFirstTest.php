@@ -6,7 +6,7 @@
  * implementing the solution to the multi armed bandit problem
  *
  * @author      Pascal Severin <pascal.severin@gmail.com>
- * @copyright   Copyright (c) 2016, Pascal Severin
+ * @copyright   Copyright (c) 2017, Pascal Severin
  * @license     Apache License 2.0
  */
 
@@ -15,14 +15,14 @@ namespace Offdev\Bandit\Test\Strategies;
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;
 use Offdev\Bandit\Strategies\EpsilonFirst;
-
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class EpsilonFirstTest
  *
  * @package Offdev\Bandit\Test\Strategies
  */
-class EpsilonFirstTest extends \PHPUnit_Framework_TestCase
+class EpsilonFirstTest extends TestCase
 {
     /**
      * Adjust the number of levers for the unit test. More levers means
@@ -39,7 +39,7 @@ class EpsilonFirstTest extends \PHPUnit_Framework_TestCase
      * @param string    $winnerId
      * @param array     $leverList
      *
-     * @dataProvider testCaseProvider
+     * @dataProvider caseProvider
      */
     public function testAllWorkingSetups(
         Machine $m,
@@ -47,8 +47,8 @@ class EpsilonFirstTest extends \PHPUnit_Framework_TestCase
         int $exploration,
         int $exploitation,
         string $winnerId,
-        array $leverList)
-    {
+        array $leverList
+    ) {
         $strategy = new EpsilonFirst($proportion, $exploration, $exploitation);
         $lever = $strategy->solve($m);
 
@@ -86,7 +86,7 @@ class EpsilonFirstTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array[]
      */
-    public function testCaseProvider()
+    public function caseProvider()
     {
         $m = new Machine();
         // Sets up a shitload of levers, just to make sure our calculations are right ^_^

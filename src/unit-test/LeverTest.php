@@ -6,7 +6,7 @@
  * implementing the solution to the multi armed bandit problem
  *
  * @author      Pascal Severin <pascal.severin@gmail.com>
- * @copyright   Copyright (c) 2016, Pascal Severin
+ * @copyright   Copyright (c) 2017, Pascal Severin
  * @license     Apache License 2.0
  */
 
@@ -14,14 +14,14 @@ namespace Offdev\Bandit\Test;
 
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Test\Hooks\TestHook;
-
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class LeverTest
  *
  * @package Offdev\Bandit\Test
  */
-class LeverTest extends \PHPUnit_Framework_TestCase
+class LeverTest extends TestCase
 {
     /**
      * @param string $id
@@ -67,9 +67,10 @@ class LeverTest extends \PHPUnit_Framework_TestCase
     public function testPullLeverIncreasesTries()
     {
         $lever = new Lever('test');
-        $lever->pull();
+        $result = $lever->pull();
 
         $this->assertEquals(1, $lever->getTries());
+        $this->assertEquals(1, $result);
     }
 
     /**
@@ -93,9 +94,10 @@ class LeverTest extends \PHPUnit_Framework_TestCase
     public function testRewardLeverIncreasesRewards()
     {
         $lever = new Lever('test');
-        $lever->reward();
+        $result = $lever->reward();
 
         $this->assertEquals(1, $lever->getRewards());
+        $this->assertEquals(1, $result);
     }
 
     /**

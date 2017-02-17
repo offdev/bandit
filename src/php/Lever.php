@@ -6,7 +6,7 @@
  * implementing the solution to the multi armed bandit problem
  *
  * @author      Pascal Severin <pascal.severin@gmail.com>
- * @copyright   Copyright (c) 2016, Pascal Severin
+ * @copyright   Copyright (c) 2017, Pascal Severin
  * @license     Apache License 2.0
  */
 
@@ -130,13 +130,17 @@ class Lever
 
     /**
      * Uses a try, and pulls the lever
+     *
+     * @return mixed
      */
     public function pull()
     {
         $this->tries++;
         if ($this->hook instanceof LeverHook) {
-            $this->hook->tryLever($this);
+            return $this->hook->tryLever($this);
         }
+
+        return $this->tries;
     }
 
     /**
@@ -146,7 +150,9 @@ class Lever
     {
         $this->rewards++;
         if ($this->hook instanceof LeverHook) {
-            $this->hook->rewardLever($this);
+            return $this->hook->rewardLever($this);
         }
+
+        return $this->rewards;
     }
 }

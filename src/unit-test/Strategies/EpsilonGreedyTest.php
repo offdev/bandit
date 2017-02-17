@@ -6,7 +6,7 @@
  * implementing the solution to the multi armed bandit problem
  *
  * @author      Pascal Severin <pascal.severin@gmail.com>
- * @copyright   Copyright (c) 2016, Pascal Severin
+ * @copyright   Copyright (c) 2017, Pascal Severin
  * @license     Apache License 2.0
  */
 
@@ -15,14 +15,14 @@ namespace Offdev\Bandit\Test\Strategies;
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;
 use Offdev\Bandit\Strategies\EpsilonGreedy;
-
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class EpsilonGreedyTest
  *
  * @package Offdev\Bandit\Test\Strategies
  */
-class EpsilonGreedyTest extends \PHPUnit_Framework_TestCase
+class EpsilonGreedyTest extends TestCase
 {
     /**
      * Adjust the number of levers for the unit test. More levers means
@@ -32,14 +32,19 @@ class EpsilonGreedyTest extends \PHPUnit_Framework_TestCase
     const NUMBER_OF_LEVERS_FOR_TEST = 1000;
 
     /**
-     * @dataProvider testCaseProvider
+     * @param Machine $m
+     * @param float $randomness
+     * @param string $winnerId
+     * @param array $leverList
+     *
+     * @dataProvider caseProvider
      */
     public function testFullWorkingSetup(
         Machine $m,
         float $randomness,
         string $winnerId,
-        array $leverList)
-    {
+        array $leverList
+    ) {
         $strategy = new EpsilonGreedy($randomness);
         $lever = $strategy->solve($m);
 
@@ -77,7 +82,7 @@ class EpsilonGreedyTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array[]
      */
-    public function testCaseProvider()
+    public function caseProvider()
     {
         $m = new Machine();
         // Sets up a shitload of levers, just to make sure our calculations are right ^_^

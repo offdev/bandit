@@ -6,13 +6,14 @@
  * implementing the solution to the multi armed bandit problem
  *
  * @author      Pascal Severin <pascal.severin@gmail.com>
- * @copyright   Copyright (c) 2016, Pascal Severin
+ * @copyright   Copyright (c) 2017, Pascal Severin
  * @license     Apache License 2.0
  */
 
 namespace Offdev\Bandit;
 
 use Offdev\Bandit\Exceptions\MissingValueException;
+use Offdev\Bandit\Hooks\LeverHook;
 use Offdev\Bandit\Strategies\Strategy;
 
 /**
@@ -41,6 +42,13 @@ class Tester
     private $strategy;
 
     /**
+     * The callback hook, which will be passed to the winning lever
+     *
+     * @var LeverHook|null
+     */
+    private $hook;
+
+    /**
      * Runs the bandit, and returns the lever most probable of winning
      *
      * @return Lever
@@ -57,7 +65,27 @@ class Tester
             throw new MissingValueException("No strategy set");
         }
 
-        return $this->strategy->solve($this->machine);
+        $lever = $this->strategy->solve($this->machine);
+        if ($this->hook instanceof LeverHook) {
+            $lever->setHook($this->hook);
+        }
+
+        return $lever;
+    }
+
+    /**
+     * Set a callback hook, notifying you whenever a lever is
+     * pulled or rewarded.
+     *
+     * @param LeverHook $hook
+     *
+     * @return Tester
+     */
+    public function setHook(LeverHook $hook): Tester
+    {
+        $this->hook = $hook;
+
+        return $this;
     }
 
     /**
