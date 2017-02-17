@@ -7,7 +7,7 @@ An A/B/x testing algorithm written in PHP by implementing the solution to the mu
 [![License](https://img.shields.io/github/license/offdev/router.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 ### Requirements
-* PHP >= 7
+* PHP >= 7.0
 * Composer
 
 ### Installation
@@ -71,6 +71,7 @@ $lever2 = new Lever('second-lever');
 $lever3 = new Lever('third-lever');
 
 $hook = new TestHook();
+// Can be set individually for each lever, but this is optional
 $lever1->setHook($hook);
 $lever2->setHook($hook);
 $lever3->setHook($hook);
@@ -79,6 +80,7 @@ $machine->addLever($lever1)->addLever($lever2)->addLever($lever3);
 
 $strategy = new EpsilonGreedy(0.1);
 $tester = new Tester();
+$tester->setHook($hook); // Will pass it down to each lever
 $tester->setMachine($machine);
 $tester->setStrategy($strategy)
 
