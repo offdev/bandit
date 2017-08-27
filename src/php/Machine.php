@@ -5,7 +5,7 @@
  * Offdev/Bandit - An A/B/x testing algorithm written in PHP by
  * implementing the solution to the multi armed bandit problem
  *
- * @author      Pascal Severin <pascal.severin@gmail.com>
+ * @author      Pascal Severin <pascal@offdev.net>
  * @copyright   Copyright (c) 2017, Pascal Severin
  * @license     Apache License 2.0
  */
