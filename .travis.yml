@@ -1,14 +1,15 @@
 # Basic config
 language: php
 php:
-  - '7.0'
-  - '7.1'
+  - '7.4'
 
-# Composer, dependencies and autoloading
+# Composer dependencies and autoloading
 install:
   - composer install
 
 # Execute unit tests
 script:
+  - ./vendor/bin/phpcs --colors --standard=PSR2 -v src/ tests/
+  - ./vendor/bin/phpstan analyse
   - ./vendor/bin/phpunit --configuration phpunit.xml
-  - ./vendor/bin/phpcs --standard=PSR2 --colors -v src/
+  - ./vendor/bin/infection

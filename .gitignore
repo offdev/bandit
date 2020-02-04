@@ -1,0 +1,6 @@
+.idea/
+reports/
+vendor/
+.phplint-cache
+.phpunit.result.cache
+composer.lock

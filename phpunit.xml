@@ -2,7 +2,7 @@
 <phpunit bootstrap="vendor/autoload.php" colors="true" verbose="false">
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src/php/</directory>
+            <directory suffix=".php">src/</directory>
             <exclude>
                 <directory suffix=".php">vendor/</directory>
             </exclude>
@@ -10,11 +10,11 @@
     </filter>
     <testsuites>
         <testsuite name="Test Suite">
-            <directory suffix="Test.php">src/unit-test/</directory>
+            <directory suffix="Test.php">tests/</directory>
         </testsuite>
     </testsuites>
     <logging>
-        <log type="coverage-html" target="reports/html" lowUpperBound="60" highLowerBound="85"/>
+        <log type="coverage-html" target="reports/phpunit" lowUpperBound="60" highLowerBound="85"/>
         <log type="coverage-text" target="php://stdout" lowUpperBound="60" highLowerBound="85"/>
     </logging>
 </phpunit>

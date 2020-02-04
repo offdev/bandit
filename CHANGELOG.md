@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+### Changed
+- Updated dependencies to latest stable version
+- Lever and Machine are now immutable
+- Class properties are now typed (requires PHP 7.4)
+
+### Removed
+- Removed useless class (Tester)
+- Removed useless Exceptions (
+
 ## [1.0.0] - 2017-02-17
 ### Added
 - Change log itself
@@ -15,4 +25,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Unit test for the hooking stuff
 
+[Unreleased]: https://github.com/offdev/bandit/compare/1.0.0...master
 [1.0.0]: https://github.com/offdev/bandit/compare/0.1.1...1.0.0

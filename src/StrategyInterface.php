@@ -6,14 +6,11 @@
  * implementing the solution to the multi armed bandit problem
  *
  * @author      Pascal Severin <pascal@offdev.net>
- * @copyright   Copyright (c) 2017, Pascal Severin
+ * @copyright   Copyright (c) 2020, Pascal Severin
  * @license     Apache License 2.0
  */
 
-namespace Offdev\Bandit\Strategies;
-
-use Offdev\Bandit\Lever;
-use Offdev\Bandit\Machine;
+namespace Offdev\Bandit;
 
 /**
  * The Strategy interface defines a way to solve a multi
@@ -21,17 +18,11 @@ use Offdev\Bandit\Machine;
  * existing strategies, please refer to following link:
  *
  * https://en.wikipedia.org/wiki/Multi-armed_bandit#Bandit_strategies
- *
- * @package Offdev\Bandit\Strategies
  */
-interface Strategy
+interface StrategyInterface
 {
     /**
      * Solves the puzzle, and returns the winning lever.
-     *
-     * @param Machine $machine
-     *
-     * @return Lever
      */
     public function solve(Machine $machine): Lever;
 }

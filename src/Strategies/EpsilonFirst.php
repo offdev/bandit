@@ -6,18 +6,17 @@
  * implementing the solution to the multi armed bandit problem
  *
  * @author      Pascal Severin <pascal@offdev.net>
- * @copyright   Copyright (c) 2017, Pascal Severin
+ * @copyright   Copyright (c) 2020, Pascal Severin
  * @license     Apache License 2.0
  */
 
 namespace Offdev\Bandit\Strategies;
 
+use Offdev\Bandit\Exceptions\RuntimeException;
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;
 
 /**
- * Class EpsilonFirst
- *
  * Represents the epsilon-first strategy to solve the multi armed bandit problem.
  *
  * From wikipedia (2016-08-13):
@@ -27,43 +26,39 @@ use Offdev\Bandit\Machine;
  * uniform probability); during the exploitation phase, the best lever is always
  * selected.
  *
- * @url     https://en.wikipedia.org/wiki/Multi-armed_bandit#Bandit_strategies
- * @package Offdev\Bandit\Strategies
+ * @url https://en.wikipedia.org/wiki/Multi-armed_bandit#Bandit_strategies
  */
 class EpsilonFirst extends EpsilonBase
 {
-    /**
-     * Percentage of exploration phase tries
-     *
-     * @var float
-     */
-    private $r = 1.0;
+    private float $r = 1.0;
 
-    /**
-     * EpsilonGreedy constructor.
-     *
-     * @param float $proportion
-     * @param int   $triesExploration
-     * @param int   $triesExploitation
-     */
     public function __construct(float $proportion, int $triesExploration, int $triesExploitation)
     {
+        if ($triesExploration < 0) {
+            throw new RuntimeException('Amount of tries (exploration phase) must be greater than 0!');
+        }
+
+        if ($triesExploitation < 0) {
+            throw new RuntimeException('Amount of tries (exploitation phase) must be greater than 0!');
+        }
+
+        if ($proportion < 0.0) {
+            throw new RuntimeException('Proportion must be greater than or equal to 0!');
+        }
+
+        if ($proportion > 1.0) {
+            throw new RuntimeException('Proportion must be less than or equal to 1!');
+        }
+
         $total = $triesExploration + $triesExploitation;
         $this->e = $proportion;
-        if (!$total) {
+        if ($total === 0) {
             $this->r = 1.0;
         } else {
             $this->r = $triesExploration / $total;
         }
     }
 
-    /**
-     * Solves the puzzle :)
-     *
-     * @param Machine $machine
-     *
-     * @return Lever
-     */
     public function solve(Machine $machine): Lever
     {
         if ($this->r < $this->e) {

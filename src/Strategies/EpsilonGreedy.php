@@ -6,18 +6,17 @@
  * implementing the solution to the multi armed bandit problem
  *
  * @author      Pascal Severin <pascal@offdev.net>
- * @copyright   Copyright (c) 2017, Pascal Severin
+ * @copyright   Copyright (c) 2020, Pascal Severin
  * @license     Apache License 2.0
  */
 
 namespace Offdev\Bandit\Strategies;
 
+use Offdev\Bandit\Exceptions\RuntimeException;
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;
 
 /**
- * Class EpsilonGreedy
- *
  * Represents the epsilon-greedy strategy to solve the multi armed bandit problem.
  *
  * From wikipedia (2016-08-13):
@@ -25,28 +24,23 @@ use Offdev\Bandit\Machine;
  * random (with uniform probability) for a proportion e. A typical parameter value might
  * be e=0.1, but this can vary widely depending on circumstances and predilections.
  *
- * @url     https://en.wikipedia.org/wiki/Multi-armed_bandit#Bandit_strategies
- * @package Offdev\Bandit\Strategies
+ * @url https://en.wikipedia.org/wiki/Multi-armed_bandit#Bandit_strategies
  */
 class EpsilonGreedy extends EpsilonBase
 {
-    /**
-     * EpsilonGreedy constructor.
-     *
-     * @param float $uniformProbability
-     */
     public function __construct(float $uniformProbability)
     {
+        if ($uniformProbability < 0.0) {
+            throw new RuntimeException('Probability must be greater than or equal to 0!');
+        }
+
+        if ($uniformProbability > 1.0) {
+            throw new RuntimeException('Probability must be less than or equal to 1!');
+        }
+
         $this->e = $uniformProbability;
     }
 
-    /**
-     * Solves the puzzle :)
-     *
-     * @param Machine $machine
-     *
-     * @return Lever
-     */
     public function solve(Machine $machine): Lever
     {
         $r = rand(0, 100) / 100;

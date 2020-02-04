@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ruleset name="main">
+    <description>PSR2 checks</description>
+
+    <arg name="colors" />
+    <arg value="ps"/>
+
+    <arg name="extensions" value="php"/>
+
+    <!-- Use the PSR2 Standard-->
+    <rule ref="PSR2" />
+
+    <file>src/</file>
+    <file>tests/</file>
+</ruleset>
