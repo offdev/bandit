@@ -15,6 +15,7 @@ namespace Offdev\Bandit\Strategies;
 use Offdev\Bandit\Exceptions\RuntimeException;
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;
+use Offdev\Bandit\Math\MersenneTwister;
 use Offdev\Bandit\Math\RandomNumberGeneratorInterface;
 use Offdev\Bandit\StrategyInterface;
 
@@ -30,11 +31,11 @@ use Offdev\Bandit\StrategyInterface;
  */
 class EpsilonGreedy implements StrategyInterface
 {
-    private float $e;
-
     private RandomNumberGeneratorInterface $rng;
 
-    public function __construct(RandomNumberGeneratorInterface $rng, float $uniformProbability = 0.1)
+    private float $e;
+
+    public function __construct(?RandomNumberGeneratorInterface $rng = null, float $uniformProbability = 0.1)
     {
         if ($uniformProbability < 0.0) {
             throw new RuntimeException('Probability must be greater than or equal to 0!');
@@ -44,8 +45,8 @@ class EpsilonGreedy implements StrategyInterface
             throw new RuntimeException('Probability must be less than or equal to 1!');
         }
 
+        $this->rng = $rng ?? new MersenneTwister();
         $this->e = $uniformProbability;
-        $this->rng = $rng;
     }
 
     public function solve(Machine $machine): Lever
