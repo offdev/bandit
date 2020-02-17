@@ -11,8 +11,9 @@ class Lever
 
     private int $rewards;
 
-    public function __construct(int $tries = 0, int $rewards = 0)
+    public function __construct(string $id, int $tries = 0, int $rewards = 0)
     {
+        $this->id = $id;
         $this->tries = $tries;
         $this->rewards = $rewards;
     }

@@ -15,6 +15,7 @@ namespace Offdev\Bandit\Strategies;
 use Offdev\Bandit\Exceptions\RuntimeException;
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;
+use Offdev\Bandit\StrategyInterface;
 
 /**
  * Represents the epsilon-first strategy to solve the multi armed bandit problem.
@@ -28,18 +29,20 @@ use Offdev\Bandit\Machine;
  *
  * @url https://en.wikipedia.org/wiki/Multi-armed_bandit#Bandit_strategies
  */
-class EpsilonFirst extends EpsilonBase
+class EpsilonFirst implements StrategyInterface
 {
     private float $r = 1.0;
 
-    public function __construct(float $proportion, int $triesExploration, int $triesExploitation)
+    private float $e;
+
+    public function __construct(int $tries, int $maxTries, float $proportion = 0.1)
     {
-        if ($triesExploration < 0) {
-            throw new RuntimeException('Amount of tries (exploration phase) must be greater than 0!');
+        if ($tries < 0) {
+            throw new RuntimeException('Amount of tries must be greater than or equal to 0!');
         }
 
-        if ($triesExploitation < 0) {
-            throw new RuntimeException('Amount of tries (exploitation phase) must be greater than 0!');
+        if ($maxTries <= 0) {
+            throw new RuntimeException('Amount of total maximum tries must be greater than 0!');
         }
 
         if ($proportion < 0.0) {
@@ -50,21 +53,16 @@ class EpsilonFirst extends EpsilonBase
             throw new RuntimeException('Proportion must be less than or equal to 1!');
         }
 
-        $total = $triesExploration + $triesExploitation;
         $this->e = $proportion;
-        if ($total === 0) {
-            $this->r = 1.0;
-        } else {
-            $this->r = $triesExploration / $total;
-        }
+        $this->r = $tries / $maxTries;
     }
 
     public function solve(Machine $machine): Lever
     {
-        if ($this->r < $this->e) {
-            return $this->getRandomLever($machine);
+        if ($this->r <= $this->e) {
+            return $machine->getRandomLever();
         }
 
-        return $this->getBestLever($machine);
+        return $machine->getBestLever();
     }
 }

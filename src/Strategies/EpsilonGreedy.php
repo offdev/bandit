@@ -15,6 +15,8 @@ namespace Offdev\Bandit\Strategies;
 use Offdev\Bandit\Exceptions\RuntimeException;
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;
+use Offdev\Bandit\Math\RandomNumberGeneratorInterface;
+use Offdev\Bandit\StrategyInterface;
 
 /**
  * Represents the epsilon-greedy strategy to solve the multi armed bandit problem.
@@ -26,9 +28,13 @@ use Offdev\Bandit\Machine;
  *
  * @url https://en.wikipedia.org/wiki/Multi-armed_bandit#Bandit_strategies
  */
-class EpsilonGreedy extends EpsilonBase
+class EpsilonGreedy implements StrategyInterface
 {
-    public function __construct(float $uniformProbability)
+    private float $e;
+
+    private RandomNumberGeneratorInterface $rng;
+
+    public function __construct(RandomNumberGeneratorInterface $rng, float $uniformProbability = 0.1)
     {
         if ($uniformProbability < 0.0) {
             throw new RuntimeException('Probability must be greater than or equal to 0!');
@@ -39,15 +45,16 @@ class EpsilonGreedy extends EpsilonBase
         }
 
         $this->e = $uniformProbability;
+        $this->rng = $rng;
     }
 
     public function solve(Machine $machine): Lever
     {
-        $r = rand(0, 100) / 100;
+        $r = $this->rng->float();
         if ($r <= $this->e) {
-            return $this->getRandomLever($machine);
+            return $machine->getRandomLever();
         }
 
-        return $this->getBestLever($machine);
+        return $machine->getBestLever();
     }
 }
