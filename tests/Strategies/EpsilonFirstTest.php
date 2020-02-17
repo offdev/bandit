@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Offdev\Tests\Strategies;
 
+use Offdev\Bandit\Exceptions\RuntimeException;
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;
 use Offdev\Bandit\Strategies\EpsilonFirst;
@@ -10,31 +11,31 @@ use PHPUnit\Framework\TestCase;
 
 class EpsilonFirstTest extends TestCase
 {
-    public function testInstantiationThrowsWhenTriesToLow()
+    public function testInstantiationThrowsWhenTriesToLow(): void
     {
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         new EpsilonFirst(-1, 100, 0.1);
     }
 
-    public function testInstantiationThrowsWhenMaxTriesToLow()
+    public function testInstantiationThrowsWhenMaxTriesToLow(): void
     {
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         new EpsilonFirst(0, 0, 0.1);
     }
 
-    public function testInstantiationThrowsWhenProbabilityToLow()
+    public function testInstantiationThrowsWhenProbabilityToLow(): void
     {
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         new EpsilonFirst(0, 10, -0.1);
     }
 
-    public function testInstantiationThrowsWhenProbabilityToHigh()
+    public function testInstantiationThrowsWhenProbabilityToHigh(): void
     {
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         new EpsilonFirst(0, 10, 1.1);
     }
 
-    public function testSolveWhenPhaseIsExplorationPhase()
+    public function testSolveWhenPhaseIsExplorationPhase(): void
     {
         $proportion = 0.1;
         $tries = 10;
@@ -50,7 +51,7 @@ class EpsilonFirstTest extends TestCase
         $this->assertSame($lever, $solution);
     }
 
-    public function testSolveWhenPhaseIsExploitationPhase()
+    public function testSolveWhenPhaseIsExploitationPhase(): void
     {
         $proportion = 0.1;
         $tries = 11;

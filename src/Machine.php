@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Offdev\Bandit;
 
+use Offdev\Bandit\Exceptions\RuntimeException;
+
 class Machine
 {
     private array $leverList = [];
@@ -10,7 +12,7 @@ class Machine
     public function __construct(Lever ...$levers)
     {
         if (empty($levers)) {
-            throw new \RuntimeException('Must provide at least one lever!');
+            throw new RuntimeException('Must provide at least one lever!');
         }
 
         $this->leverList = $levers;

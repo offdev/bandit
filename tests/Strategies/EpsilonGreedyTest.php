@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Offdev\Tests\Strategies;
 
+use Offdev\Bandit\Exceptions\RuntimeException;
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;
 use Offdev\Bandit\Math\RandomNumberGeneratorInterface;
@@ -11,23 +12,23 @@ use PHPUnit\Framework\TestCase;
 
 class EpsilonGreedyTest extends TestCase
 {
-    public function testInstantiationThrowsWhenProbabilityToLow()
+    public function testInstantiationThrowsWhenProbabilityToLow(): void
     {
         $rngMock = $this->createMock(RandomNumberGeneratorInterface::class);
 
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         new EpsilonGreedy($rngMock, -0.1);
     }
 
-    public function testInstantiationThrowsWhenProbabilityToHigh()
+    public function testInstantiationThrowsWhenProbabilityToHigh(): void
     {
         $rngMock = $this->createMock(RandomNumberGeneratorInterface::class);
 
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         new EpsilonGreedy($rngMock, 1.1);
     }
 
-    public function testSolveWhenRandomLeverIsSelected()
+    public function testSolveWhenRandomLeverIsSelected(): void
     {
         $proportion = 0.1;
 
@@ -44,7 +45,7 @@ class EpsilonGreedyTest extends TestCase
         $this->assertSame($lever, $solution);
     }
 
-    public function testSolveWhenBestLeverIsSelected()
+    public function testSolveWhenBestLeverIsSelected(): void
     {
         $proportion = 0.1;
 

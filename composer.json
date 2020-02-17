@@ -17,10 +17,9 @@
         "phpunit/phpunit": "^8.5",
         "squizlabs/php_codesniffer": "^3.0",
         "phpstan/phpstan": "^0.12",
-        "localheinz/phpstan-rules": "^0.14",
         "phpstan/extension-installer": "^1.0",
         "symfony/var-dumper": "^5.0",
-        "jakub-onderka/php-parallel-lint": "^1.0"
+        "overtrue/phplint": "^1.2"
     },
     "autoload": {
         "psr-4": {
@@ -33,7 +32,7 @@
         }
     },
     "scripts": {
-        "lint": "./vendor/bin/parallel-lint --exclude vendor .",
+        "lint": "./vendor/bin/phplint ./ --exclude=vendor",
         "phpunit": "./vendor/bin/phpunit",
         "phpstan": "./vendor/bin/phpstan analyze",
         "check-style": "./vendor/bin/phpcs",
