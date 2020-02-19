@@ -6,86 +6,37 @@ An A/B/x testing algorithm written in PHP by implementing the solution to the mu
 [![Build Status](https://img.shields.io/travis/offdev/bandit/master.svg?style=flat-square)](https://travis-ci.org/offdev/bandit)
 [![License](https://img.shields.io/github/license/offdev/bandit.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-### Requirements
-* PHP >= 7.0
+## Requirements
+* PHP >= 7.4
 * Composer
 
-### Installation
+## Installation
 ```bash
 $ composer require offdev/bandit
 ```
 
-### Usage
-First, you need to setup a machine, and its possible levers. A lever might have already been pulled a few times, and some lever may also have rewarded the lucky dude which pulled it, so adjust those numbers accordingly. Example:
+## General Usage
+First, you need to setup a machine, and its possible levers. A lever might have already been pulled a few times, and some levers may also have rewarded the lucky dude which pulled it, so adjust those numbers accordingly. Example:
 ```php
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;
 
-$machine = new Machine();
-$lever1 = new Lever('first-lever');
-$lever2 = new Lever('second-lever');
-$lever3 = new Lever('third-lever');
-
-$lever1->setTries(123)->setRewards(1);
-$lever2->setTries(108)->setRewards(3);
-$lever3->setTries(115)->setRewards(0);
-
-$machine->addLever($lever1)->addLever($lever2)->addLever($lever3);
+$machine = new Machine(
+    new Lever('first-lever', 123, 1),
+    new Lever('second-lever', 108, 3),
+    new Lever('third-lever', 115, 0),
+);
 ```
 
 Now you need a strategy to solve your problem. See [this link](https://en.wikipedia.org/wiki/Multi-armed_bandit#Bandit_strategies) for more information about strategies, and have a look at the example ones I have included in `src/php/Strategies`. Example:
 ```php
-use Offdev\Bandit\Machine;
-use Offdev\Bandit\Tester;
 use Offdev\Bandit\Strategies\EpsilonGreedy;
 
-$strategy = new EpsilonGreedy(0.1);
-$tester = new Tester();
-$tester->setMachine($machine);
-$tester->setStrategy($strategy)
-
-$winningLever = $tester->run();
+$strategy = new EpsilonGreedy();
+$winningLever = $strategy->solve($machine);
 ```
 
-You can also set a hook on each lever, so you can actually interact with your own application whenever a lever is pulled or rewarded. Here is an example of a hook:
-```php
-class TestHook extends BanditHook implements LeverHook
-{
-    public function tryLever(Lever $lever)
-    {
-        $this->testCase->IncreaseTryCount($lever->getId());
-    }
+It is as simple as that :)
 
-    public function rewardLever(Lever $lever)
-    {
-        $this->testCase->IncreaseRewardCount($lever->getId());
-    }
-}
-```
-
-And the corresponding usage of the hook:
-```php
-$machine = new Machine();
-$lever1 = new Lever('first-lever');
-$lever2 = new Lever('second-lever');
-$lever3 = new Lever('third-lever');
-
-$hook = new TestHook();
-// Can be set individually for each lever, but this is optional
-$lever1->setHook($hook);
-$lever2->setHook($hook);
-$lever3->setHook($hook);
-
-$machine->addLever($lever1)->addLever($lever2)->addLever($lever3);
-
-$strategy = new EpsilonGreedy(0.1);
-$tester = new Tester();
-$tester->setHook($hook); // Will pass it down to each lever
-$tester->setMachine($machine);
-$tester->setStrategy($strategy)
-
-$winningLever = $tester->run();
-$winningLever->pull();
-```
-
-And somewhere on your website you might want to count the rewards your lever generated, but I guess you figured out how to do that!
+## TODO
+Add more docs :)
