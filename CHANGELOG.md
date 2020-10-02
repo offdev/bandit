@@ -9,10 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Updated dependencies to latest stable version
 - Lever and Machine are now immutable
 - Class properties are now typed (requires PHP 7.4)
+- Changes parameter order for `EpsilonGreedy` strategy, so the random number generator can be omitted.
 
 ### Removed
 - Removed useless class (Tester)
-- Removed useless Exceptions (
+- Removed useless Exceptions
 
 ## [1.0.0] - 2017-02-17
 ### Added

@@ -17,7 +17,7 @@ class EpsilonGreedyTest extends TestCase
         $rngMock = $this->createMock(RandomNumberGeneratorInterface::class);
 
         $this->expectException(RuntimeException::class);
-        new EpsilonGreedy($rngMock, -0.1);
+        new EpsilonGreedy(-0.1, $rngMock);
     }
 
     public function testInstantiationThrowsWhenProbabilityToHigh(): void
@@ -25,7 +25,7 @@ class EpsilonGreedyTest extends TestCase
         $rngMock = $this->createMock(RandomNumberGeneratorInterface::class);
 
         $this->expectException(RuntimeException::class);
-        new EpsilonGreedy($rngMock, 1.1);
+        new EpsilonGreedy(1.1, $rngMock);
     }
 
     public function testSolveWhenRandomLeverIsSelected(): void
@@ -39,7 +39,7 @@ class EpsilonGreedyTest extends TestCase
         $rngMock = $this->createMock(RandomNumberGeneratorInterface::class);
         $rngMock->expects($this->once())->method('float')->willReturn(0.0);
 
-        $strategy = new EpsilonGreedy($rngMock, $proportion);
+        $strategy = new EpsilonGreedy($proportion, $rngMock);
         $solution = $strategy->solve($machine);
 
         $this->assertSame($lever, $solution);
@@ -56,7 +56,7 @@ class EpsilonGreedyTest extends TestCase
         $rngMock = $this->createMock(RandomNumberGeneratorInterface::class);
         $rngMock->expects($this->once())->method('float')->willReturn(0.5);
 
-        $strategy = new EpsilonGreedy($rngMock, $proportion);
+        $strategy = new EpsilonGreedy($proportion, $rngMock);
         $solution = $strategy->solve($machine);
 
         $this->assertSame($lever, $solution);

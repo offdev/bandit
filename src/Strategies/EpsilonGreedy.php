@@ -26,7 +26,7 @@ class EpsilonGreedy implements StrategyInterface
 
     private float $e;
 
-    public function __construct(?RandomNumberGeneratorInterface $rng = null, float $uniformProbability = 0.1)
+    public function __construct(float $uniformProbability = 0.1, ?RandomNumberGeneratorInterface $rng = null)
     {
         if ($uniformProbability < 0.0) {
             throw new RuntimeException('Probability must be greater than or equal to 0!');

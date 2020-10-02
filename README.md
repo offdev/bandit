@@ -16,7 +16,7 @@ $ composer require offdev/bandit
 ```
 
 ## General Usage
-First, you need to setup a machine, and its possible levers. A lever might have already been pulled a few times, and some levers may also have rewarded the lucky dude which pulled it, so adjust those numbers accordingly. Example:
+First, you need to set up a machine, and its possible levers. A lever might have already been pulled a few times, and some levers may also have rewarded the lucky person which pulled it, so adjust those numbers accordingly. Example:
 ```php
 use Offdev\Bandit\Lever;
 use Offdev\Bandit\Machine;

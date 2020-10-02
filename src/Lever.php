@@ -32,4 +32,9 @@ class Lever
     {
         return $this->rewards;
     }
+
+    public function getConversion(): float
+    {
+        return $this->tries > 0 ? $this->rewards / $this->tries : 0.0;
+    }
 }

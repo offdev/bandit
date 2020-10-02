@@ -28,4 +28,11 @@ final class LeverTest extends TestCase
 
         $this->assertSame(10, $lever->getRewards());
     }
+
+    public function testGetConversion(): void
+    {
+        $lever = new Lever('lever-1', 100, 10);
+
+        $this->assertSame(0.1, $lever->getConversion());
+    }
 }
